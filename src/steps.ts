@@ -60,4 +60,10 @@ export class TestSteps extends Methods {
             await this.clickSelector(selectorObject)
         })
     }
+
+    async step_navigate(dataObject: DataObject){
+        await test.step(`Переход по URL ${dataObject.data} с описанием ${dataObject.description}`, async () =>{
+            await this.navigate(dataObject)
+        })
+    }
 }
