@@ -74,7 +74,7 @@ export class Methods {
     async checkVisibility(selectorObject: SelectorObject) {
         const nth = (await this.optionsResolver(selectorObject)).nth
         const locator = selectorObject.selector.nth(nth)
-        await locator.waitFor({ state: "attached" })
+        await locator.waitFor({ state: "attached", timeout: 5000 })
         await expect(locator).toBeVisible()
     }
 
@@ -102,7 +102,7 @@ export class Methods {
         const options = await this.optionsResolver(selectorObject)
         const locator = options.containsText ? selectorObject.selector.getByText(options.text).nth(options.nth) : selectorObject.selector.nth(options.nth)
         if (options.clickNeeded) {
-            await locator.click()
+            await locator.click({timeout:5000})
         } else {
             throw new Error('Not clickable in code, change data file')
         }
@@ -129,7 +129,7 @@ export class Methods {
 
     /**
      *
-     *
+     * Навигация по ссылке
      * @param {DataObject} dataObject
      * @memberof Methods
      */
